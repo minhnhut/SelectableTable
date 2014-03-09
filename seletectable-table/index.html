@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Selectable Table</title>
+  <script type='text/javascript' src='js/jquery-2.0.3.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+<script type='text/javascript'>
+	function add(id, name, other) {
+		$("#data tbody").append('<tr><td>' + id + '</td><td>' + name + '</td><td>' + other + '</td></tr>');
+	}
+	
+	function update() {
+		var a = $("#data tbody tr");
+		$("#hidden-data").html('');
+		a.each(function(i,v){
+			if ($(v).hasClass('row-checked')) {
+				$("#hidden-data").append('<input type="hidden" name="row[]" value="'+i+'" />');
+			}
+		});
+	}
+	
+	$(function(){
+		update();
+		$("#data tbody tr").click(function() {
+			$(this).toggleClass('row-checked');
+			update();
+		});
+	});
+</script>
+
+
+</head>
+<body>
+  <table id="data">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Other</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+  </table>
+  <div id="hidden-data">
+  </div>
+<script>
+	var i = 0;
+	add(i++,'TRAN MINH NHUT','3799/10');
+	add(i++,'TRAN NHUT MINH','BINH MINH, VINH LONG');
+	add(i++,'MINH TRAN NHUT','0977...');
+	add(i++,'NHUT TRAN MINH','N/A');
+	add(i++,'NHUT MINH TRAN','N/A');
+	add(i++,'MINH NHUT TRAN','N/A');
+</script>  
+</body>
+
+
+</html>
+
